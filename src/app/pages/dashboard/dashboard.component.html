@@ -1,1 +1,25 @@
-<p>dashboard works!</p>
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <h2>Restaurants: 
+                @for(restaurant of restaurants; track restaurant) {
+                    <ul>
+                        <a [routerLink]="['/dashboard/', restaurant.id]"><li>{{restaurant.name}}</li></a>
+                    </ul>
+                }
+            </h2>
+        </div>
+        <div class="col">
+            <h2>Bookings: 
+
+            </h2>
+        </div>
+    </div>
+    <button class="btn btn-primary" (click)="DisplayAddRestaurant()">Add Restaurant</button>
+</div>
+@if(display){
+    <div class="popup-container">
+        <div class="popup">Restaurant</div>
+        <a (click)="DisplayAddRestaurant()"><div class="overlay"></div></a>
+    </div>
+}

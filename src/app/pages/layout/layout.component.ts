@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DashboardComponent } from '../dashboard/dashboard.component';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 
 
@@ -11,6 +12,20 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent {
 
+ 
+export class LayoutComponent {
+  isLoggedIn = this.auth;
+  
+  constructor(private router: Router, private auth: AuthService) { }
+
+  getRoute() {
+    return this.router.url;
+  }
+
+  logout() {
+    this.router.navigate(['']);
+    this.auth.logout() ;
+  }
+  
 }

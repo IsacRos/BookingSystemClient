@@ -2,21 +2,22 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, tap, throwError } from 'rxjs';
 import { User } from '../models/user';
+import { Restaurant } from '../models/Restaurant';
 
-const connectionString = "https://localhost:7208/api/auth/login";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-
+  
   constructor(private http: HttpClient) { }
-
+  
   loginPost(body: User): Observable<any> {
-    const url = 'your-api-endpoint'; // Replace with your actual login API endpoint
+    
+    const loginUrl = "https://localhost:7208/api/auth/login";
 
-    return this.http.post(connectionString, body)
+    return this.http.post(loginUrl, body)
       .pipe(
         tap((response: any) => {
           if (response.accessToken) {
@@ -31,7 +32,15 @@ export class AuthService {
       );
   }
 
+  registerPost(body: User) {
+    const registerUrl = "https://localhost:7208/api/auth/register";
+    
+    return this.http.post(registerUrl, body);
+  }
 
+  logout() {
+    localStorage.clear();
+  }
 
 
   // loginPost(body: User) {
@@ -47,9 +56,6 @@ export class AuthService {
   //   });
   // }
 
-  GetRestaurant() {
-    return this.http.get('https://localhost:7208/api/Restaurant')
-  }
 
   
 }

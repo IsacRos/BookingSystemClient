@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
-import { TokenModel } from '../../models/Token';
 import { Router } from '@angular/router';
 
 
@@ -44,17 +43,5 @@ export class LoginComponent {
       },
     );
   }
-
-
-  //   login() {
-//     let user = new User();
-//     if(this.loginForm.invalid) return;
-//     else {
-//       user.email = this.loginForm.value.email ?? '';
-//       user.password = this.loginForm.value.password ?? '';
-      
-//       this.auth.loginPost(user)
-//     }  
-//  }
 
 }
