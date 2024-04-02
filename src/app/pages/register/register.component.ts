@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, MinLengthValidator, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import Validation from '../../utils/validation';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
 
   displayPw = false;
 
-  constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) {}
+  constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) { }
 
   showPassword(b: boolean) {
     this.displayPw = b;

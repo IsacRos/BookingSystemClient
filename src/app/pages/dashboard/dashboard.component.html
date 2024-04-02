@@ -4,7 +4,13 @@
             <h2>Restaurants: 
                 @for(restaurant of restaurants; track restaurant) {
                     <ul>
-                        <a [routerLink]="['/dashboard/', restaurant.id]"><li>{{restaurant.name}}</li></a>
+                        <li>
+                            <a [routerLink]="['/dashboard/', restaurant.id]">
+                                {{restaurant.name}}
+                            </a>
+                            <button href="dashboard" (click)="onEdit(restaurant.id)"><i class="bi bi-pen"></i></button>
+                            <button href="dashboard" (click)="onDelete(restaurant.id)"><i class="bi bi-trash"></i></button>
+                        </li>
                     </ul>
                 }
             </h2>
@@ -17,9 +23,11 @@
     </div>
     <button class="btn btn-primary" (click)="DisplayAddRestaurant()">Add Restaurant</button>
 </div>
-@if(display){
+<!-- @if(display){
     <div class="popup-container">
-        <div class="popup">Restaurant</div>
+        <div class="popup">
+            <app-add-restaurant (closePopup)="DisplayAddRestaurant()"></app-add-restaurant>
+        </div>
         <a (click)="DisplayAddRestaurant()"><div class="overlay"></div></a>
     </div>
-}
+} -->

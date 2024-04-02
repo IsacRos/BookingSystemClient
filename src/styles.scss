@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+a {
+    text-decoration: none;
+    &:link {
+        color: red;
+    }
+
+    &:visited {
+        color: green;
+    }
+    
+    &:hover {
+        color: hotpink;
+    }
+    
+    &:active {
+        color: blue;
+    }
+}
+
+.popup {
+    display: flex;
+    background-color: grey;
+    // width: 400px;
+    // height: 500px;
+    z-index: 3;
+    position: absolute;
+}
+.overlay {
+    top:0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    backdrop-filter:blur(3px)
+
+}
+
+.popup-container{
+    display:flex; 
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

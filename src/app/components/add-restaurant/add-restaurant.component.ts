@@ -1,26 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DbService } from '../../services/db.service';
+import { Restaurant } from '../../models/Restaurant';
+import { MatDialogRef } from '@angular/material/dialog';
+
+
+
 
 @Component({
   selector: 'app-add-restaurant',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './add-restaurant.component.html',
   styleUrl: './add-restaurant.component.scss'
 })
-export class AddRestaurantComponent implements OnInit {
-  form: FormGroup = new FormGroup({
-    name: new FormControl(''),
-    addresssLine1: new FormControl(''),
-    addressLine2: new FormControl(''),
-    addressLine3: new FormControl(''),
-    zipCode: new FormControl(''),
-    city: new FormControl(''),
-    country: new FormControl(''),
-    phoneNumber: new FormControl('')
-  });
 
-  constructor(private formBuilder: FormBuilder) { }
+
+export class AddRestaurantComponent implements OnInit {
+
+  // @Output() closePopup: EventEmitter<void> = new EventEmitter<void>();
+
+  form!: FormGroup;
+  pending = false;
+  submitted = false;
+
+  constructor(
+    private formBuilder: FormBuilder, 
+    private db: DbService, 
+    private dialogRef: MatDialogRef<AddRestaurantComponent>) 
+    { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -28,20 +37,35 @@ export class AddRestaurantComponent implements OnInit {
       addressLine1: ['', Validators.required],
       addressLine2: [''],
       addressLine3: [''],
-      zipCode: [
-        '', 
-        Validators.required, 
-        Validators.maxLength(5),
-        Validators.minLength(5)
-      ],
+      zipCode: ['',Validators.required],
       city: ['', Validators.required],
       country: ['', Validators.required],
-      phoneNumber: [
-        '', 
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(8)
-      ]
+      phoneNumber: ['', Validators.required]
     })
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.form.controls
+  }
+
+  addRestaurant() {
+
+    this.pending = true;
+    if (this.form.invalid) { 
+      return;
+    };
+    const restaurant = this.form.value;
+    
+    this.db.AddRestaurant(restaurant).subscribe(response => console.log(response));
+    this.submitted = true;
+    
+    // console.log(JSON.stringify(this.form.value, null, 2));
+  }
+  
+  onClose() {
+    this.dialogRef.close();
+    location.reload();
+    // this.closePopup.emit();
+    // this.submitted = false;
   }
 }

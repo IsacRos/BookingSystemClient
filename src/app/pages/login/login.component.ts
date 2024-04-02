@@ -29,7 +29,7 @@ export class LoginComponent {
     const user = new User();
     user.email = this.loginForm.value.email ?? '';
     user.password = this.loginForm.value.password ?? '';
-
+    
     this.auth.loginPost(user)
       .subscribe({
         next: () => {
