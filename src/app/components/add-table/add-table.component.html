@@ -1,0 +1,20 @@
+@if(!pending || form.invalid || !submitted) {
+    <form [formGroup]="form" (ngSubmit)="addTable()">
+        <div class="form-group">
+            <label for="capacity">Capacity</label>
+            <input type="number" class="form-control" formControlName="capacity" id="capacity">
+        </div>
+    </form>
+    @if(pending && f['capacity'].errors) {
+        <div >
+            <div>Capacity has to be between 1 and 50</div>
+        </div>
+    }
+    <button class="btn btn-primary" (click)="addTable()">Add</button>
+    <button class="btn btn-warning" (click)="onClose()">Cancel</button>
+} @else if(pending && !form.invalid && submitted) {
+    Table added.
+    <button class="btn btn-primary" (click)="onClose()">Close</button>
+} @else {
+    <div>Something went wrong.</div>
+}

@@ -1,4 +1,26 @@
-<h1>
-    {{restaurant?.name}}
-</h1>
-<p>restaurant-page works!</p>
+<div class="container">
+    @if(restaurant){
+        <h1>{{restaurant.name}}</h1>
+        <h2>Address:</h2>
+        <p>{{restaurant.address.line1}}</p>
+        <p>{{restaurant.address.line2}}</p>
+        <p>{{restaurant.address.line3}}</p>
+        <p>{{restaurant.address.postalCode}}</p>
+        <p>{{restaurant.address.city}}</p>
+        <p>{{restaurant.address.country}}</p>
+        <p>Phone number: {{restaurant.phoneNumber}}</p>
+        <br/>
+        <h2>Tables:</h2>
+        <p>Total amount of tables: {{restaurant.amountOfTables}}</p>
+        @for(table of tables; track table){
+            <div class="d-flex">
+                <div>Table: {{table.capacity}}</div>
+                <button (click)="onDelete(restaurant.id, table.id)"><i class="bi bi-trash"></i></button>
+            </div>
+        }
+        <button class="btn btn-primary" (click)="openPopup(restaurant.id)">Add Table</button>
+    } @else {
+        <p>...loading</p>
+    }
+</div>
+    

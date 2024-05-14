@@ -39,10 +39,10 @@ export class EditRestaurantComponent {
     let request = this.form.value;
     request.id = this.data;
 
-    this.db.UpdateRestaurant(request).subscribe(response => {
-      console.log(response);
-    })
-    this.submitted = true;
+    this.db.UpdateRestaurant(request).subscribe({
+      next: () => this.submitted = true,
+      error: err => console.log("Couldn't update restaurant", err)
+    });
   }
 
   onClose() {

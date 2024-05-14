@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'rxjs';
 import { User } from '../models/user';
 import { Restaurant } from '../models/Restaurant';
 
@@ -10,7 +10,9 @@ import { Restaurant } from '../models/Restaurant';
 })
 
 export class AuthService {
-  
+
+  private subject = new BehaviorSubject<boolean>(this.getInitialAuthState());
+
   constructor(private http: HttpClient) { }
   
   loginPost(body: User): Observable<any> {
@@ -21,8 +23,8 @@ export class AuthService {
       .pipe(
         tap((response: any) => {
           if (response.accessToken) {
-            localStorage.setItem('authToken', response.accessToken);
-            localStorage.setItem('refreshToken', response.refreshToken);
+            sessionStorage.setItem('authToken', response.accessToken);
+            sessionStorage.setItem('refreshToken', response.refreshToken);
           }
         }),
         catchError(error => {
@@ -34,12 +36,25 @@ export class AuthService {
 
   registerPost(body: User) {
     const registerUrl = "https://localhost:7208/api/auth/register";
-    
     return this.http.post(registerUrl, body);
   }
 
   logout() {
-    localStorage.clear();
+    sessionStorage.clear();
+  }
+
+  isAuthenticated(): Observable<boolean> {
+    return this.subject.asObservable();
+  }
+
+  setAuthenticated(value: boolean) {
+    sessionStorage.setItem('isAuthenticated', JSON.stringify(value));
+    this.subject.next(value);
+  }
+
+  private getInitialAuthState(): boolean {
+    const isAuthenticated = sessionStorage.getItem('isAuthenticated');
+    return isAuthenticated ? JSON.parse(isAuthenticated) : false;
   }
 
 

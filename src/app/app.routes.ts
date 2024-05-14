@@ -5,11 +5,13 @@ import { LayoutComponent } from './pages/layout/layout.component';
 import { authGuard } from './services/auth.guard';
 import { RegisterComponent } from './pages/register/register.component';
 import { RestaurantPageComponent } from './pages/restaurant-page/restaurant-page.component';
+import { HomeComponent } from './pages/home/home.component';
+import { BookRestaurantPageComponent } from './pages/book-restaurant-page/book-restaurant-page.component';
 
 export const routes: Routes = [
     {
         path: 'login',
-        component:LoginComponent
+        component: LoginComponent
     },
     {
         path: 'register',
@@ -28,7 +30,19 @@ export const routes: Routes = [
                 path: 'dashboard/:id', 
                 component: RestaurantPageComponent,
                 canActivate: [authGuard]
-            }
+            },
+            {
+                path:'',
+                component: HomeComponent,
+            },
+            {
+                path:':id',
+                component: BookRestaurantPageComponent,
+            },
         ]
+    },
+    {
+        path: '**',
+        redirectTo:'' 
     }
 ];

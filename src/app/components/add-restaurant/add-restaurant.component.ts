@@ -19,8 +19,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 export class AddRestaurantComponent implements OnInit {
 
-  // @Output() closePopup: EventEmitter<void> = new EventEmitter<void>();
-
   form!: FormGroup;
   pending = false;
   submitted = false;
@@ -56,10 +54,10 @@ export class AddRestaurantComponent implements OnInit {
     };
     const restaurant = this.form.value;
     
-    this.db.AddRestaurant(restaurant).subscribe(response => console.log(response));
-    this.submitted = true;
-    
-    // console.log(JSON.stringify(this.form.value, null, 2));
+    this.db.AddRestaurant(restaurant).subscribe({
+      next: () => this.submitted = true,
+      error: err => console.error("Couln't add restaurant", err)
+    });    
   }
   
   onClose() {

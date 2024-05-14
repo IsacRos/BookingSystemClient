@@ -1,15 +1,2 @@
-@if(getRoute() !== '/') {
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container">
-            <a class="nav-link" href="" (click)="logout()">Logout</a>
-        </div>
-    </nav>
-} @else {
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div>
-            <a class="nav-link" href="login">Login</a>
-            <a class="nav-link" href="register">Register</a>
-        </div>
-    </nav>
-}
+<app-nav-bar></app-nav-bar>
 <router-outlet></router-outlet>

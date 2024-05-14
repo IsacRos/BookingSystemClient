@@ -4,14 +4,25 @@ import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LayoutComponent } from "./pages/layout/layout.component";
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, LoginComponent, ReactiveFormsModule, HttpClientModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
+    imports: [CommonModule, RouterOutlet, LoginComponent, ReactiveFormsModule, HttpClientModule, LayoutComponent]
 })
 export class AppComponent {
-  title = 'BookingSystemWebPage';
+
+  private subject = new BehaviorSubject<boolean>(false);
+
+  isAuthenticated(): Observable<boolean> {
+    return this.subject.asObservable();
+  }
+
+  setAuthenticated(value: boolean) {
+    this.subject.next(value);
+  }
 }

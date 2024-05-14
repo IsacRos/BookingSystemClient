@@ -1,0 +1,20 @@
+@if(restaurant){
+    <h1>{{restaurant.name}}</h1>
+    <h2>Address:</h2>
+    <p>{{restaurant.address.line1}}</p>
+    <p>{{restaurant.address.line2}}</p>
+    <p>{{restaurant.address.line3}}</p>
+    <p>{{restaurant.address.postalCode}}</p>
+    <p>{{restaurant.address.city}}</p>
+    <p>{{restaurant.address.country}}</p>
+    <p>Phone number: {{restaurant.phoneNumber}}</p>
+    <br/>
+    
+    <h2>Tables:</h2>
+    @for(table of tables; track tables) {
+            <h1>{{table.capacity}}</h1>
+            <p>{{table.bookings[0].endTime}}</p>
+    }
+} @else {
+    <p>...loading</p>
+}

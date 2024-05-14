@@ -6,6 +6,7 @@ import { AddRestaurantComponent } from "../../components/add-restaurant/add-rest
 import { PopupService } from '../../services/popup.service';
 import { VerifyDeleteComponent } from '../../components/verify-delete/verify-delete.component';
 import { EditRestaurantComponent } from '../../components/edit-restaurant/edit-restaurant.component';
+import { DeleteModel } from '../../models/DeleteModel';
 
 @Component({
     selector: 'app-dashboard',
@@ -25,6 +26,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.db.GetRestaurant().subscribe(response => {
       this.restaurants = response;
+      
     })
   }
   
@@ -38,7 +40,11 @@ export class DashboardComponent implements OnInit {
     this.popupService.openPopup(EditRestaurantComponent, id);
   }
   onDelete(id: string) {
-    this.popupService.openPopup(VerifyDeleteComponent, id);
+    let deleteModel: DeleteModel = {
+      type: "restaurant",
+      value: id
+    };
+    this.popupService.openPopup(VerifyDeleteComponent, deleteModel);
   }
 }
 

@@ -39,6 +39,9 @@ export class LoginComponent {
         error: (error) => {
           alert('Login failed ' + error.message);
           this.router.navigate(['']);
+        },
+        complete: () => {
+          this.auth.setAuthenticated(true);
         }
       },
     );
