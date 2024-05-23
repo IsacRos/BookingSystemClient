@@ -1,0 +1,15 @@
+<ul>
+    @for(booking of bookings; track booking) {
+        <li>
+            Restaurant: {{booking.restaurantName}} <br/>
+            Date and time: {{booking.bookingDate}} <br/>
+            Amount of people: {{booking.amountOfPeople}} <br/>
+            Customer first name: {{booking.customerFirstName}} <br/>
+            Customer last name: {{booking.customerLastName}} <br/>
+            Customer email: {{booking.customerEmail}} <br/>
+            Customer phone number: {{booking.customerPhone}} <br/>
+            Booking status: {{statusGetter(booking.status)}} <br/>
+        </li>
+        <br/>
+    }
+</ul>

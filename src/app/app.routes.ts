@@ -7,6 +7,9 @@ import { RegisterComponent } from './pages/register/register.component';
 import { RestaurantPageComponent } from './pages/restaurant-page/restaurant-page.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BookRestaurantPageComponent } from './pages/book-restaurant-page/book-restaurant-page.component';
+import { CancelBookingComponent } from './pages/cancel-booking/cancel-booking.component';
+import { BookingPageComponent } from './pages/booking-page/booking-page.component';
+import { ActiveBookingPageComponent } from './pages/active-booking-page/active-booking-page.component';
 
 export const routes: Routes = [
     {
@@ -16,6 +19,10 @@ export const routes: Routes = [
     {
         path: 'register',
         component: RegisterComponent,
+    },
+    {
+        path: 'cancel/:id',
+        component: CancelBookingComponent
     },
     {
         path: '',
@@ -32,11 +39,21 @@ export const routes: Routes = [
                 canActivate: [authGuard]
             },
             {
+                path: 'bookings',
+                component: BookingPageComponent,
+                canActivate: [authGuard]
+            },
+            {
+                path: 'activeBookings',
+                component: ActiveBookingPageComponent,
+                canActivate: [authGuard]
+            },
+            {
                 path:'',
                 component: HomeComponent,
             },
             {
-                path:':id',
+                path:'restaurant/:id',
                 component: BookRestaurantPageComponent,
             },
         ]

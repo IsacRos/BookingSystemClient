@@ -1,10 +1,9 @@
 <div>
-    <h1>Isacs bokningssystem</h1>
     <h1>Choose restaurant: </h1>
     <ul>
     @for(restaurant of restaurants; track restaurant) {
         <li>
-            <a [routerLink]="['/', restaurant.id]">
+            <a [routerLink]="['restaurant/', restaurant.id]">
                 {{restaurant.name}}
             </a>
             {{restaurant.name}}

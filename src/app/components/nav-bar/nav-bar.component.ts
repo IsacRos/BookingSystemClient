@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { BehaviorSubject } from 'rxjs';
 
+
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
