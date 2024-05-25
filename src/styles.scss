@@ -19,7 +19,27 @@ $my-theme: mat.define-light-theme(
   )
 );
 
+@include mat.all-component-themes($my-theme);
 @import 'styles/theme.scss';
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+} 
+ 
 
 a {
     text-decoration: none;
@@ -70,17 +90,45 @@ a {
 html, body { height: 100%; }
 
 body { 
-    margin: 0; 
-    font-family: "Ubuntu sans";
     background-color: $hex5;
     color: $hex2;
 }
 
-nav {
-    background-color: $hex1;
+.background-frame {
+    margin: 20px;
+    background-color: $hex3;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 25px 0 $hex2;
     color: $hex5;
-    font-size: large;
-    height: 140px;
+    text-shadow: 2px 1px 5px $hex2;
 }
 
-@include mat.all-component-themes($my-theme);
+.carousel-inner {
+    border-radius: 30px; 
+    border-bottom-right-radius: 50%;
+    box-shadow: -22px -22px 0 0 $hex3;
+}
+
+.carousel {
+    width: 100%;
+}
+
+.card {
+    color: $hex2;
+    background-color: $hex5;
+    width: 100%;
+    padding: 20px;
+    border-radius: 30px;
+    text-shadow: none;
+    h5 {
+        font-size: 50px;
+    }
+    .card-body {
+        border-radius: 30px;
+        text-align: end;
+        background-color: rgba($hex4, 0.1);
+        height: 100%;
+        margin-left: 30px;
+    }
+}

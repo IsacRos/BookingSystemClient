@@ -4,15 +4,16 @@ import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { LayoutComponent } from "./pages/layout/layout.component";
+
 import { BehaviorSubject, Observable } from 'rxjs';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [CommonModule, RouterOutlet, LoginComponent, ReactiveFormsModule, HttpClientModule, LayoutComponent]
+    imports: [CommonModule, RouterOutlet, LoginComponent, ReactiveFormsModule, HttpClientModule, NavBarComponent]
 })
 export class AppComponent {
 

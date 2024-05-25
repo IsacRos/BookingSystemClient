@@ -24,3 +24,11 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+nav {
+    background-color: $hex1;
+    color: $hex5;
+    font-size: large;
+    height: 10vh;
+    min-height: 130px;
+}

@@ -1,13 +1,43 @@
-<div>
-    <h1>Choose restaurant: </h1>
-    <ul>
-    @for(restaurant of restaurants; track restaurant) {
-        <li>
-            <a [routerLink]="['restaurant/', restaurant.id]">
-                {{restaurant.name}}
-            </a>
-            {{restaurant.name}}
-        </li>
+<div class="d-flex flex-column align-items-center background-frame">
+    <h1 class="w-100 text-center mb-5 mt-2">Welcome to Snaptable! <br/> Choose a restaurant to begin your booking</h1>
+    @for(restaurant of restaurants; track restaurant) {   
+        <div class="card mb-3" >
+            <div class="row g-0">
+              <div class="col-md-4">
+                <div [attr.id]="restaurant.id" class="carousel slide">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="{{getRandomImage()}}" class="d-block w-100" alt="">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{{getRandomImage()}}" class="d-block w-100" alt="">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{{getRandomImage()}}" class="d-block w-100" alt="">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#' + restaurant.id" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#' + restaurant.id" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+              </div>
+              <div class="col-md-8">
+                <a [routerLink]="['restaurant/', restaurant.id]">
+                  <div class="card-body">
+                    <h5 class="card-title">{{restaurant.name}}</h5>
+                    <p class="card-text">{{restaurant.address.addressLine1}}</p>
+                    <p class="card-text">{{restaurant.address.city}}</p>
+                    <p class="card-text"><small>Total amount of tables: {{restaurant.amountOfTables}}</small></p>
+                    <p class="card-text"><small>Total restaurant capacity: {{restaurant.totalCapacity}}</small></p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
     }
-    </ul>    
 </div>

@@ -1,0 +1,22 @@
+.outer-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.main-content {
+    flex: 1;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    overflow: auto;
+    scrollbar-gutter: stable;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.content-width {
+    width: 100%;
+    max-width: 1080px;
+}
+

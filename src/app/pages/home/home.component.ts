@@ -30,4 +30,9 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/dashboard']);
     }
   }
+
+  getRandomImage() {
+    const randomIndex = (Math.floor(Math.random() * 12) + 1).toString();
+    return `../../assets/restaurantPhotos/${randomIndex}.jpg`
+  }
 }
