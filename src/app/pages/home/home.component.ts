@@ -4,6 +4,8 @@ import { DbService } from '../../services/db.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { getRandomImage } from '../../utils/helper-functions';
+
 
 @Component({
   selector: 'app-home',
@@ -16,6 +18,7 @@ export class HomeComponent implements OnInit {
   restaurants: Restaurant[] = [];
   id: string = '';
   isAuthenticated!: boolean;
+  getRandomImage = () => getRandomImage()
 
   constructor(private db: DbService, private authService: AuthService, private router: Router) {}
   
@@ -31,8 +34,5 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  getRandomImage() {
-    const randomIndex = (Math.floor(Math.random() * 12) + 1).toString();
-    return `../../assets/restaurantPhotos/${randomIndex}.jpg`
-  }
+
 }

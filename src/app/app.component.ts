@@ -26,4 +26,5 @@ export class AppComponent {
   setAuthenticated(value: boolean) {
     this.subject.next(value);
   }
+
 }

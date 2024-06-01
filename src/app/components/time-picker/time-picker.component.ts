@@ -40,17 +40,21 @@ export class TimePickerComponent implements OnChanges {
       // console.log(this.tables)
       this.loadData();
     }
+    
   }
   
   loadData = () =>{
     const startTime = new Date(this.userSettings.openingTime);
     const endTime = new Date(this.userSettings.closingTime);
     endTime.setDate(this.selectedDate!.getDate());
-    
+    endTime.setMonth(this.selectedDate!.getMonth());
+    endTime.setFullYear(this.selectedDate!.getFullYear());
 
     let currentTime = new Date();
     currentTime.setTime(startTime.getTime());
     currentTime.setDate(this.selectedDate!.getDate());
+    currentTime.setMonth(this.selectedDate!.getMonth());
+    currentTime.setFullYear(this.selectedDate!.getFullYear());
   
     while(currentTime <= endTime) {
       this.timeSlots.push(new Date(currentTime));

@@ -1,84 +1,86 @@
-@if(!pending || form.invalid || !submitted) {
-    <form [formGroup]="form" (ngSubmit)="addRestaurant()">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" formControlName="name" id="name" [ngClass]="{ 'is-invalid': pending && f['name'].errors}">
-            @if(pending && f['name'].errors){
-                <div class="invalid-feedback">
-                    @if(f['name'].errors['required']) {
-                        <div>Name required</div>
-                    }
-                </div>
-            }
-        </div>
-        <div class="form-group">
-            <label for="addressLine1">Address line 1</label>
-            <input type="text" class="form-control" formControlName="addressLine1" id="addressLine1" [ngClass]="{ 'is-invalid': pending && f['addressLine1'].errors}">
-            @if(pending && f['addressLine1'].errors){
-                <div class="invalid-feedback">
-                    @if(f['addressLine1'].errors['required']) {
-                        <div>Adress required</div>
-                    }
-                </div>
-            }
-        </div>
-        <div class="form-group">
-            <label for="addressLine2">Address line 2</label>
-            <input type="text" class="form-control" formControlName="addressLine2" id="addressLine2">
-        </div>
-        <div class="form-group">
-            <label for="addressLine3">Address line 3</label>
-            <input type="text" class="form-control" class="form-control" formControlName="addressLine3" id="addressLine3">
-        </div>
-        <div class="form-group">
-            <label for="zipCode">Zip code</label>
-            <input type="text" class="form-control" formControlName="zipCode" id="zipCode" [ngClass]="{ 'is-invalid': pending && f['zipCode'].errors}">
-            @if(pending && f['zipCode'].errors){
-                <div class="invalid-feedback">
-                    @if(f['zipCode'].errors['required']) {
-                        <div>Zip code required</div>
-                    }
-                </div>
-            }
-        </div>
-        <div class="form-group">
-            <label for="city">City</label>
-            <input type="text" class="form-control" formControlName="city" id="city" [ngClass]="{ 'is-invalid': pending && f['city'].errors}">
-            @if(pending && f['city'].errors){
-                <div class="invalid-feedback">
-                    @if(f['city'].errors['required']) {
-                        <div>City required</div>
-                    }
-                </div>
-            }
-        </div>
-        <div class="form-group">
-            <label for="country">Country</label>
-            <input type="text" class="form-control" formControlName="country" id="country" [ngClass]="{ 'is-invalid': pending && f['country'].errors}">
-            @if(pending && f['country'].errors){
-                <div class="invalid-feedback">
-                    @if(f['country'].errors['required']) {
-                        <div>Country required</div>
-                    }
-                </div>
-            }
-        </div>
-        <div class="form-group">
-            <label for="phoneNumber">Phone number</label>
-            <input type="text" class="form-control" formControlName="phoneNumber" id="phoneNumber" [ngClass]="{ 'is-invalid': pending && f['phoneNumber'].errors}">
-            @if(pending && f['phoneNumber'].errors){
-                <div class="invalid-feedback">
-                    @if(f['phoneNumber'].errors['required']) {
-                        <div>Phone number invalid</div>
-                    }
-                </div>
-            }
-        </div>
-        <button class="btn btn-primary" type="submit">Add</button>
-    </form>
-} @else if(pending && !form.invalid && submitted) {
-    Restaurant registered.
-    <button class="btn btn-primary" (click)="onClose()">Close</button>
-} @else {
-    <div>Something went wrong.</div>
-}
+<div class="popup-container">
+    @if(!pending || form.invalid || !submitted) {
+        <form [formGroup]="form" (ngSubmit)="addRestaurant()">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" formControlName="name" id="name" [ngClass]="{ 'is-invalid': pending && f['name'].errors}">
+                @if(pending && f['name'].errors){
+                    <div class="invalid-feedback">
+                        @if(f['name'].errors['required']) {
+                            <div>Name required</div>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="form-group">
+                <label for="addressLine1">Address line 1</label>
+                <input type="text" class="form-control" formControlName="addressLine1" id="addressLine1" [ngClass]="{ 'is-invalid': pending && f['addressLine1'].errors}">
+                @if(pending && f['addressLine1'].errors){
+                    <div class="invalid-feedback">
+                        @if(f['addressLine1'].errors['required']) {
+                            <div>Adress required</div>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="form-group">
+                <label for="addressLine2">Address line 2</label>
+                <input type="text" class="form-control" formControlName="addressLine2" id="addressLine2">
+            </div>
+            <div class="form-group">
+                <label for="addressLine3">Address line 3</label>
+                <input type="text" class="form-control" class="form-control" formControlName="addressLine3" id="addressLine3">
+            </div>
+            <div class="form-group">
+                <label for="zipCode">Zip code</label>
+                <input type="text" class="form-control" formControlName="zipCode" id="zipCode" [ngClass]="{ 'is-invalid': pending && f['zipCode'].errors}">
+                @if(pending && f['zipCode'].errors){
+                    <div class="invalid-feedback">
+                        @if(f['zipCode'].errors['required']) {
+                            <div>Zip code required</div>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" formControlName="city" id="city" [ngClass]="{ 'is-invalid': pending && f['city'].errors}">
+                @if(pending && f['city'].errors){
+                    <div class="invalid-feedback">
+                        @if(f['city'].errors['required']) {
+                            <div>City required</div>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" class="form-control" formControlName="country" id="country" [ngClass]="{ 'is-invalid': pending && f['country'].errors}">
+                @if(pending && f['country'].errors){
+                    <div class="invalid-feedback">
+                        @if(f['country'].errors['required']) {
+                            <div>Country required</div>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Phone number</label>
+                <input type="text" class="form-control" formControlName="phoneNumber" id="phoneNumber" [ngClass]="{ 'is-invalid': pending && f['phoneNumber'].errors}">
+                @if(pending && f['phoneNumber'].errors){
+                    <div class="invalid-feedback">
+                        @if(f['phoneNumber'].errors['required']) {
+                            <div>Phone number invalid</div>
+                        }
+                    </div>
+                }
+            </div>
+            <button class="btn btn-primary" type="submit">Add</button>
+        </form>
+    } @else if(pending && !form.invalid && submitted) {
+        Restaurant registered.
+        <button class="btn btn-primary" (click)="onClose()">Close</button>
+    } @else {
+        <div>Something went wrong.</div>
+    }
+</div>

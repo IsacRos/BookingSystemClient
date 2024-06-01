@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Restaurant } from '../../models/Restaurant';
 import { DbService } from '../../services/db.service';
@@ -12,6 +12,7 @@ import { TimePickerComponent } from "../../components/time-picker/time-picker.co
 import { PopupService } from '../../services/popup.service';
 import { BookTableComponent } from '../../components/book-table/book-table.component';
 import { UserSettings } from '../../utils/user-settings';
+import { getRandomImage } from '../../utils/helper-functions';
 
 
 @Component({
@@ -21,17 +22,24 @@ import { UserSettings } from '../../utils/user-settings';
     styleUrl: './book-restaurant-page.component.scss',
     imports: [DatepickerComponent, MatFormFieldModule, MatInputModule, MatSelectModule, TimePickerComponent]
 })
-export class BookRestaurantPageComponent {
+export class BookRestaurantPageComponent implements OnInit {
   id: string = '';
   restaurant!: Restaurant;
   tables?: Table[];
   selectedAmount: number | null = null; 
   amountOfPeople = this.userSettings.getMaxPeople();
+  images: string[] = [];
   
-  dateVariable?: Date | null = null;
-  timeVariable?: Date | null = null;
+  dateVariable: Date | null = null;
+  timeVariable: Date | null = null;
  
-  constructor(private router: ActivatedRoute, private db: DbService, private popupService: PopupService, private userSettings: UserSettings) {};
+  constructor(
+    private router: ActivatedRoute, 
+    private db: DbService, 
+    private popupService: PopupService, 
+    private userSettings: UserSettings,
+  ) {};
+
   ngOnInit(): void {
     this.router.params.subscribe(params => {
       this.id = params['id'];
@@ -44,7 +52,9 @@ export class BookRestaurantPageComponent {
     this.db.GetTables(this.id).subscribe(response => {
       this.tables = response;
     })
-
+    this.images.push(getRandomImage());
+    this.images.push(getRandomImage());
+    this.images.push(getRandomImage());
   }
 
   receiveDate(event: Date) {

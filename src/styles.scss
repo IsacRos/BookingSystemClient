@@ -1,4 +1,6 @@
 @use '@angular/material' as mat;
+@use 'sass:map';
+@import 'styles/theme.scss';
 
 @include mat.core();
 
@@ -16,11 +18,33 @@ $my-theme: mat.define-light-theme(
       accent: $my-accent,
     ),
     typography: $custom-typography
-  )
+    )
 );
 
 @include mat.all-component-themes($my-theme);
-@import 'styles/theme.scss';
+
+.mat-mdc-dialog-container {
+    --mdc-dialog-container-shape: 30px;
+}
+
+.my-dialog {
+    border-radius: $radius-m;
+}
+.my-backdrop {
+    // background-color: rgba($hex5, 0.1);
+    backdrop-filter: blur(1px);
+}
+
+.popup-container{
+    border-radius: $radius-m;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: $hex5;
+}
 
 ::-webkit-scrollbar {
     width: 3px;
@@ -60,14 +84,14 @@ a {
     }
 }
 
-.popup {
-    display: flex;
-    background-color: grey;
-    // width: 400px;
-    // height: 500px;
-    z-index: 3;
-    position: absolute;
-}
+// .popup {
+//     display: flex;
+//     // background-color: grey;
+//     // width: 400px;
+//     // height: 500px;
+//     z-index: 3;
+//     position: absolute;
+// }
 .overlay {
     top:0;
     left: 0;
@@ -79,19 +103,34 @@ a {
 
 }
 
-.popup-container{
-    display: flex; 
-    height: 500px;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
+
 
 html, body { height: 100%; }
 
 body { 
     background-color: $hex5;
     color: $hex2;
+    text-shadow: 1px 1px 3px $hex4;
+}
+
+form {
+    display: contents;
+    .form-group {
+        width: 80%;
+    }
+    .form-control {
+        background-color: $hex6;
+        border: solid 1px $hex4;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        input {
+            margin-left: 30px;
+        }
+    }
+}
+.standard-form {
+    min-width: 300px;
 }
 
 .background-frame {
@@ -131,4 +170,46 @@ body {
         height: 100%;
         margin-left: 30px;
     }
+}
+
+.component-content {
+    margin-top: 40px;
+    width: 100vw;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.btn, .btn-check {
+    border: solid 2px $hex1;
+    border-radius: 5px;
+    background-color: $hex1;
+    margin: 1px;
+    color: $hex5;
+    margin-top: 10px;
+    &:active:focus {
+        border: solid 2px $hex4;
+        background-color: $hex4;
+        color: $hex2;
+    }
+    &:hover  {
+        border: solid 2px $hex4;
+        background-color: $hex5;
+        color: $hex2;
+    }
+}
+
+.toggle-button {
+    margin: 1px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.text-container {
+    margin-top: 40px;
 }
