@@ -1,0 +1,34 @@
+.component-content {
+    max-width: none;
+}
+.mat-column-amountGuests {
+    flex: 0 0 8%;
+}
+.mat-column-restaurantName {
+    flex: 0 0 13%;
+    word-break: break-word;
+}
+.mat-column-time {
+    flex: 0 0 8%;
+    word-break: break-word;
+}
+.mat-column-date {
+    flex: 0 0 10%;
+    word-break: break-word;
+}
+.mat-column-guestEmail {
+    flex: 0 0 20%;
+    word-break: break-word;
+}
+.mat-column-guestPhNr {
+    flex: 0 0 10%;
+    word-break: break-word;
+}
+.mat-column-status {
+    flex: 0 0 10%;
+    word-break: break-word;
+}
+.mat-column-guestName {
+    flex: 0 0 20%;
+    word-break: break-word;
+}

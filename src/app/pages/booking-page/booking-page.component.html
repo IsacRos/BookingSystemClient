@@ -1,16 +1,108 @@
 <div class="component-content">
-    @for(booking of bookings; track booking) {
-    <div class="item-body-bg mb-3">
-      <h5>{{ booking.restaurantName }}</h5>
-      <p>Date: {{ booking.bookingDate.toLocaleDateString() }}</p>
-      <p>Time: {{ convertTimeString(booking.bookingDate) }}</p>
-      <p>Amount of guests: {{ booking.amountOfPeople }}</p>
-      <p>
-        Guest name: {{ booking.customerFirstName }} {{ booking.customerLastName }}
-      </p>
-      <p>Guest email: {{ booking.customerEmail }}</p>
-      <p>Guest phone number: {{ booking.customerPhone }}</p>
-      <p>Booking status: {{ statusGetter(booking.status) }}</p>
-    </div>
-    }
-  </div>
+  <mat-table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    (matSortChange)="SortChange($event)"
+  >
+    <ng-container matColumnDef="restaurantName">
+      <mat-header-cell class="short"
+        #restaurantName
+        *matHeaderCellDef
+        mat-sort-header="restaurantName"
+      >
+        Restaurant Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let booking">
+        {{ booking.restaurantName }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <mat-header-cell class="long"
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header="bookingDate"
+      >
+        Date
+      </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let booking">
+        {{ booking.bookingDate.toLocaleDateString() }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="time">
+      <mat-header-cell
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header="bookingTime"
+      >
+        Time
+      </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let booking">
+        {{ convertTimeString(booking.bookingDate) }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="amountGuests">
+      <mat-header-cell
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header="amountOfPeople"
+      >
+        Amount of guests
+      </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let booking">
+        {{ booking.amountOfPeople }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="guestName">
+      <mat-header-cell
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header="customerLastName"
+      >
+        Guest Name
+      </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let booking">
+        {{ booking.customerFirstName }} {{ booking.customerLastName }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="guestEmail">
+      <mat-header-cell
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header="customerEmail"
+      >
+        Email
+      </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let booking">
+        {{ booking.customerEmail }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="guestPhNr">
+      <mat-header-cell
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header="customerPhone"
+      >
+        Phone number
+      </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let booking">
+        {{ booking.customerPhone }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header="status"
+      >
+        Status
+      </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let booking">
+        {{ statusGetter(booking.status) }}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+  </mat-table>
+</div>

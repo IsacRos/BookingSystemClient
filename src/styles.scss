@@ -50,6 +50,23 @@ $my-theme: map.merge($my-theme, ('color': $modified-color-map));
     --mdc-dialog-container-shape: 30px;
 }
 
+.mat-mdc-table {
+    padding: 20px;
+    border-radius: 30px;
+    .mat-mdc-row:nth-child(odd) {
+        background-color: $hex6;
+      }
+      
+      .mat-mdc-row:nth-child(even) {
+        background-color: $hex5;
+      }
+      
+      .mat-mdc-row:hover{
+        background-color: $hex4 !important;
+      }
+}
+
+
 // .my-select {
 //     --mdc-select-fill-color: blue;
 //     --mdc-text-field-fill-color: blue;
@@ -228,4 +245,8 @@ form {
     background-color: rgba($hex4, 0.2);
     padding: 25px;
     border-radius: 30px;
+}
+
+table {
+    width: 100%;
 }
