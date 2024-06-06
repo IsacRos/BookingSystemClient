@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    width: 100vw;
 }
 .main-content {
     align-items: center;
@@ -11,4 +10,5 @@
     padding: 30px;
     overflow: auto;
     scrollbar-gutter: stable;
+    width: 100vw;
 }

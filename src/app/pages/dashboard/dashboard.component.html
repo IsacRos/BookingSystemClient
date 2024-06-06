@@ -1,67 +1,81 @@
-<div class="container text-center">
-    <div class="row">
-        <div class="col">
-            <h2>Restaurants: 
-                <ul>
-                    @for(restaurant of restaurants; track restaurant) {
-                        <li>
-                            <a [routerLink]="['/dashboard/', restaurant.id]">
-                                {{restaurant.name}}
-                            </a>
-                            <button href="dashboard" (click)="onEdit(restaurant.id)"><i class="bi bi-pen"></i></button>
-                            <button href="dashboard" (click)="onDelete(restaurant.id)"><i class="bi bi-trash"></i></button>
-                        </li>
-                    }
-                </ul>
-            </h2>
-            <button class="btn btn-primary" (click)="DisplayAddRestaurant()">Add Restaurant</button>
-        </div>
-        <div class="col">
-            <h2>Pending Bookings: </h2>
-                <ul>
-                    @for(booking of pendingBookings; track booking){
-                        <li>
-                            <p>{{booking.restaurantName}}</p>
-                            <p>Amount of people: {{booking.amountOfPeople}}</p>
-                            <p>{{booking.bookingDate.toLocaleDateString()}} {{booking.bookingDate}}</p>
-                            <p>Status: {{statusGetter(booking.status)}}</p>
-                            <br/>
-                        </li>
-                        <button class="btn btn-primary" (click)="acceptBooking(booking.id)">Accept</button>
-                        <button class="btn btn-danger" (click)="declineBooking(booking.id)">Decline</button>
-                    }
-                </ul>
-            <button class="btn btn-danger" (click)="closeAllPending()">Close all pending and outdated bookings</button>
-        </div>
+<div class="component-content d-flex justify-content-between">
+  <div class="side-panel">
+    <h3>Restaurants:</h3>
+    @for(restaurant of restaurants; track restaurant) {
+    <div>
+      <a [routerLink]="['/dashboard/', restaurant.id]">
+        {{ restaurant.name }}
+      </a>
+      <button href="dashboard" (click)="onEdit(restaurant.id)">
+        <i class="bi bi-pen"></i>
+      </button>
+      <button href="dashboard" (click)="onDelete(restaurant.id)">
+        <i class="bi bi-trash"></i>
+      </button>
     </div>
-    <div class="row">
-        <div class="col">
-            <h2>Confirm show up:</h2>
-            @if(activeBookings.length > 0){
-                <ul>
-                    @for(booking of activeBookings; track booking) {
-                        <li>
-                            {{booking.customerLastName}} <br/>
-                            {{booking.bookingDate}} <br/>
-                            {{booking.amountOfPeople}} <br/>
-                            {{booking.restaurantName}}
-                            <h3>Did they show up?</h3>
-                            <button class="btn btn-primary" (click)="confirmShowUp(booking.id, true)">Yes</button>
-                            <button class="btn btn-danger" (click)="confirmShowUp(booking.id, false)">No</button>
-                        </li>    
-                    }
-                </ul>
-            } @else {
-                Nothing to confirm
-            }
+    }
+    <button class="btn btn-primary" (click)="DisplayAddRestaurant()">
+      Add Restaurant
+    </button>
+      <h3 class="mt-4">Last month statistics:</h3>
+      <app-statistics></app-statistics>
+  </div>
+  <div class="page-content ms-5">
+    <div>
+      <h1 class="mb-5 text-center">Todos</h1>
+      <h3 class="text-center">Pending Bookings:</h3>
+      @if(pendingBookings.length > 0){ @for(booking of pendingBookings; track booking){
+      <div class="item-body-bg">
+        <p>{{ booking.restaurantName }}</p> 
+        <p>Amount of people: {{ booking.amountOfPeople }}</p>
+        <p>Date: {{ booking.bookingDate.toLocaleDateString() }}</p>
+        <p>Time: {{ convertTimeString(booking.bookingDate) }}</p>
+        <p>Status: {{ statusGetter(booking.status) }}</p>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-primary" (click)="acceptBooking(booking.id)">
+            Accept
+          </button>
+          <button class="btn btn-danger" (click)="declineBooking(booking.id)">
+            Decline
+          </button>
         </div>
+      </div>
+      } } @else { <p class="text-center">No pending bookings</p> } 
+
+      <!-- <button class="btn btn-danger" (click)="closeAllPending()">
+        Close all pending and outdated bookings
+      </button> -->
     </div>
+    <div class="justify-content-between mt-5">
+      <div>
+        <h3 class="text-center">Confirm show up:</h3>
+        <div>
+          @if(activeBookings.length > 0){ @for(booking of activeBookings; track
+          booking) {
+          <div class="item-body-bg">
+            <p class="text-left">
+              {{ booking.customerLastName }} <br />
+              {{ booking.bookingDate }} <br />
+              {{ booking.amountOfPeople }} <br />
+              {{ booking.restaurantName }}
+            </p>
+            <h3>Did they show up?</h3>
+            <button
+              class="btn btn-primary"
+              (click)="confirmShowUp(booking.id, true)"
+            >
+              Yes
+            </button>
+            <button
+              class="btn btn-danger"
+              (click)="confirmShowUp(booking.id, false)"
+            >
+              No
+            </button>
+          </div>
+          } } @else { <p class="text-center">Nothing to confirm</p> }
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<!-- @if(display){
-    <div class="popup-container">
-        <div class="popup">
-            <app-add-restaurant (closePopup)="DisplayAddRestaurant()"></app-add-restaurant>
-        </div>
-        <a (click)="DisplayAddRestaurant()"><div class="overlay"></div></a>
-    </div>
-} -->

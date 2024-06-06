@@ -3,6 +3,7 @@ import { DbService } from '../../services/db.service';
 import { Booking } from '../../models/Booking';
 import { StatusGetter } from '../../utils/enumMapper';
 import { BookingStatus } from '../../models/BookingStatus';
+import { convertTimeString } from '../../utils/helper-functions';
 
 @Component({
   selector: 'app-booking-page',
@@ -13,7 +14,8 @@ import { BookingStatus } from '../../models/BookingStatus';
 })
 export class BookingPageComponent implements OnInit {
   bookings: Booking[] = [];
-  statusGetter = (status: BookingStatus) => StatusGetter(status);
+  statusGetter = StatusGetter;
+  convertTimeString = convertTimeString;
   
   constructor(private db: DbService) {}
 

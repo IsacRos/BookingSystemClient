@@ -1,19 +1,23 @@
 <div class="d-flex flex-wrap">
-    @if(selectedDate !== null && amountOfPeople !== null) {
-        <div>Choose time:</div>
-        <div class="d-flex flex-wrap" role="group">
-            @for(time of timeSlots; track timeSlots) {
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio{{$index}}" 
-                    autocomplete="off" [disabled]="checkDisabled(time)"
-                    (change)="pickerEvent(time)"
-                >
-                <label class="btn toggle-button"  for="btnradio{{$index}}">
-                    {{time.getHours() < 10 ?
-                    '0'  + time.getHours() 
-                    : '' + time.getHours()}}:{{time.getMinutes() < 10 ? '00' 
-                    : '' + time.getMinutes()}}
-                </label>
-            }
-        </div>
+  @if(selectedDate !== null && amountOfPeople !== null) {
+  <div>Choose time:</div>
+  <div class="d-flex flex-wrap" role="group">
+    @for(time of timeSlots; track timeSlots) {
+    <input
+      type="radio"
+      class="btn-check"
+      name="btnradio"
+      id="btnradio{{ $index }}"
+      autocomplete="off"
+      [disabled]="checkDisabled(time)"
+      (change)="pickerEvent(time)"
+    />
+    <label class="btn toggle-button" for="btnradio{{ $index }}">
+      {{
+        time.getHours() < 10 ? "0" + time.getHours() : "" + time.getHours()
+      }}:{{ time.getMinutes() < 10 ? "00" : "" + time.getMinutes() }}
+    </label>
     }
+  </div>
+  }
 </div>

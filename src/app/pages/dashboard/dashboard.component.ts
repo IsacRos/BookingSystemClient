@@ -10,13 +10,15 @@ import { DeleteModel } from '../../models/DeleteModel';
 import { Booking } from '../../models/Booking';
 import { StatusGetter } from '../../utils/enumMapper';
 import { BookingStatus } from '../../models/BookingStatus';
+import { convertTimeString }  from '../../utils/helper-functions';
+import { StatisticsComponent } from "../../components/statistics/statistics.component";
 
 @Component({
     selector: 'app-dashboard',
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.scss',
-    imports: [RouterLink, AddRestaurantComponent]
+    imports: [RouterLink, AddRestaurantComponent, StatisticsComponent]
 })
 
 export class DashboardComponent implements OnInit {
@@ -25,7 +27,9 @@ export class DashboardComponent implements OnInit {
   activeBookings: Booking[] = [];
   restaurants: Restaurant[] = [];
   display = false;
-  statusGetter = (status: BookingStatus) => StatusGetter(status);
+  statusGetter = StatusGetter;
+  convertTimeString = convertTimeString;
+  
 
   constructor(private db: DbService, private popupService: PopupService) {}
   

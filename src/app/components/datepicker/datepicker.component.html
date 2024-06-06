@@ -1,17 +1,16 @@
-<mat-form-field class="example-full-width" >
-    <input 
-      matInput [matDatepicker]="picker" 
-      placeholder="{{placeholder}}" 
-      [(ngModel)]="dateValue" 
-      (ngModelChange)="pickerEvent()"
-      [matDatepickerFilter]="dateFilter"
-      [disabled]="disabled"
-      
-    >
-    <mat-hint>MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="picker">
-      <mat-icon matDatepickerToggleIcon>v</mat-icon>
-    </mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+<mat-form-field class="example-full-width">
+  <input
+    matInput
+    [matDatepicker]="picker"
+    placeholder="{{ placeholder }}"
+    [(ngModel)]="dateValue"
+    (ngModelChange)="pickerEvent()"
+    [matDatepickerFilter]="dateFilter"
+    [disabled]="disabled"
+  />
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker">
+    <mat-icon matDatepickerToggleIcon>v</mat-icon>
+  </mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
-

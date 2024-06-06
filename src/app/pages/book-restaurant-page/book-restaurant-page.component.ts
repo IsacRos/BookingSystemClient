@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Restaurant } from '../../models/Restaurant';
 import { DbService } from '../../services/db.service';
@@ -7,12 +7,12 @@ import { TableBooking } from '../../models/TableBooking';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DatepickerComponent } from '../../components/datepicker/datepicker.component';
 import { MatInputModule } from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
+import {MatSelect, MatSelectModule} from '@angular/material/select';
 import { TimePickerComponent } from "../../components/time-picker/time-picker.component";
 import { PopupService } from '../../services/popup.service';
 import { BookTableComponent } from '../../components/book-table/book-table.component';
 import { UserSettings } from '../../utils/user-settings';
-import { getRandomImage } from '../../utils/helper-functions';
+import { convertTimeString, getRandomImage } from '../../utils/helper-functions';
 
 
 @Component({
@@ -32,12 +32,16 @@ export class BookRestaurantPageComponent implements OnInit {
   
   dateVariable: Date | null = null;
   timeVariable: Date | null = null;
+
+  convertTimeString = convertTimeString;
+  @ViewChild('mySelectAmount') mySelectAmount!: MatSelect;
  
   constructor(
     private router: ActivatedRoute, 
     private db: DbService, 
     private popupService: PopupService, 
     private userSettings: UserSettings,
+    private cdRef: ChangeDetectorRef
   ) {};
 
   ngOnInit(): void {
@@ -62,6 +66,10 @@ export class BookRestaurantPageComponent implements OnInit {
   }
   receiveTime(event: Date) {
     this.timeVariable = event;
+  }
+  onSelectChange(){
+    this.cdRef.detectChanges();
+    if(this.mySelectAmount) this.mySelectAmount.close();
   }
   
   /* checkAvailability(booking: TableBooking, date: Date): boolean {

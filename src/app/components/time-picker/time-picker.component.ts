@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { Table } from '../../models/Table';
 import { UserSettings } from '../../utils/user-settings';
 import { skip } from 'rxjs';
@@ -16,15 +16,18 @@ export class TimePickerComponent implements OnChanges {
 
   timeSlots: Date[] = [];
 
-  selectedTime: Date | undefined = undefined;
+  selectedTime: Date | null = null;
+
+  chosenAmountOfPeople?: number | null;
 
   @Input() selectedDate?: Date | null;
-   
+
   @Input() tables?: Table[];
 
   @Input() amountOfPeople?: number | null;
 
   @Output() timeChange = new EventEmitter<Date>();
+
 
   pickerEvent(val: Date) {
     this.timeChange.emit(val);
@@ -33,16 +36,15 @@ export class TimePickerComponent implements OnChanges {
   testTables = () => {
     console.log(this.tables);
   }
-  
+
   ngOnChanges(): void {
-    if(this.selectedDate) {
-      this.timeSlots = [];
-      // console.log(this.tables)
-      this.loadData();
-    }
-    
+    document.getElementsByName('btnradio').forEach(x => (x as HTMLInputElement).checked = false);
+    this.timeChange.emit(undefined);
+    this.timeSlots = [];
+    console.log(this.tables)
+    this.loadData();
   }
-  
+
   loadData = () =>{
     const startTime = new Date(this.userSettings.openingTime);
     const endTime = new Date(this.userSettings.closingTime);
@@ -90,7 +92,9 @@ export class TimePickerComponent implements OnChanges {
       else flag++;
       indexer++;
     }
-    if(flag === indexer) return true; 
+    if(flag === indexer) {
+      return true; 
+    } 
     return false;
   }
 }

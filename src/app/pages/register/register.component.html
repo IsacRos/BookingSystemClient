@@ -1,39 +1,68 @@
-<div class="standard-form">    
-    <form [formGroup]="registerForm" (submit)="onSubmit()" autocomplete="new-password">
-        <h1>Register</h1>
-        
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input class="form-control" formControlName="email" id="email" autocomplete="new-password" type="email" />
-            @if(registerForm.get('email')?.getError('email')) {
-                <div>Invalid email</div>
-            }
-            
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input class="form-control" formControlName="password" id="password" type="{{displayPw ? 'text' : 'password'}}" autocomplete="new-password" />
-            @if(registerForm.value.password){
-                <div>
-                    {{ 
-                        registerForm.get('password')!.getError('minLength')||
-                        registerForm.get('password')!.getError('maxLength')||
-                        registerForm.get('password')!.getError('minLowercase')||
-                        registerForm.get('password')!.getError('minUppercase')||
-                        registerForm.get('password')!.getError('minNumbers')||
-                        registerForm.get('password')!.getError('minSymbols')
-                    }}
-                </div>
-            }
-            <button class="btn mb-4" type="button" (mousedown)="showPassword(true)" (mouseup)="showPassword(false)">Show password</button>
-        </div>
-        <div class="form-group">
-            <label for="confirmPassword">Confirm Password</label>
-            <input class="form-control" formControlName="confirmPassword" id="confirmPassword" type="password" />
-            @if(registerForm.get('confirmPassword')?.getError('matching')){
-                <div>Password don't match</div>
-            }
-        </div>
-        <button class="btn" type="submit" [disabled]="registerForm.invalid">Register</button>
-    </form>
+<div class="standard-form">
+  <form
+    [formGroup]="registerForm"
+    (submit)="onSubmit()"
+    autocomplete="new-password"
+  >
+    <h1>Register</h1>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        class="form-control"
+        formControlName="email"
+        id="email"
+        autocomplete="new-password"
+        type="email"
+      />
+      @if(registerForm.get('email')?.getError('email')) {
+      <div>Invalid email</div>
+      }
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        class="form-control"
+        formControlName="password"
+        id="password"
+        type="{{ displayPw ? 'text' : 'password' }}"
+        autocomplete="new-password"
+      />
+      @if(registerForm.value.password){
+      <div>
+        {{
+          registerForm.get("password")!.getError("minLength") ||
+            registerForm.get("password")!.getError("maxLength") ||
+            registerForm.get("password")!.getError("minLowercase") ||
+            registerForm.get("password")!.getError("minUppercase") ||
+            registerForm.get("password")!.getError("minNumbers") ||
+            registerForm.get("password")!.getError("minSymbols")
+        }}
+      </div>
+      }
+      <button
+        class="btn mb-4"
+        type="button"
+        (mousedown)="showPassword(true)"
+        (mouseup)="showPassword(false)"
+      >
+        Show password
+      </button>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        class="form-control"
+        formControlName="confirmPassword"
+        id="confirmPassword"
+        type="password"
+      />
+      @if(registerForm.get('confirmPassword')?.getError('matching')){
+      <div>Password don't match</div>
+      }
+    </div>
+    <button class="btn" type="submit" [disabled]="registerForm.invalid">
+      Register
+    </button>
+  </form>
 </div>

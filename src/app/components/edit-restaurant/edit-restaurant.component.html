@@ -1,82 +1,113 @@
 @if(!submitted){
-    <form [formGroup]="form" (ngSubmit)="onEdit()">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" formControlName="name" id="name" >
-            <!-- @if(pending && f['name'].errors){
+<form [formGroup]="form" (ngSubmit)="onEdit()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" formControlName="name" id="name" />
+    <!-- @if(pending && f['name'].errors){
                 <div class="invalid-feedback">
                     @if(f['name'].errors['required']) {
                         <div>Name required</div>
                     }
                 </div>
             } -->
-        </div>
-        <div class="form-group">
-            <label for="addressLine1">Address line 1</label>
-            <input type="text" class="form-control" formControlName="addressLine1" id="addressLine1">
-            <!-- @if(pending && f['addressLine1'].errors){
+  </div>
+  <div class="form-group">
+    <label for="addressLine1">Address line 1</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="addressLine1"
+      id="addressLine1"
+    />
+    <!-- @if(pending && f['addressLine1'].errors){
                 <div class="invalid-feedback">
                     @if(f['addressLine1'].errors['required']) {
                         <div>Adress required</div>
                     }
                 </div>
             } -->
-        </div>
-        <div class="form-group">
-            <label for="addressLine2">Address line 2</label>
-            <input type="text" class="form-control" formControlName="addressLine2" id="addressLine2">
-        </div>
-        <div class="form-group">
-            <label for="addressLine3">Address line 3</label>
-            <input type="text" class="form-control" class="form-control" formControlName="addressLine3" id="addressLine3">
-        </div>
-        <div class="form-group">
-            <label for="zipCode">Zip code</label>
-            <input type="text" class="form-control" formControlName="zipCode" id="zipCode">
-            <!-- @if(pending && f['zipCode'].errors){
+  </div>
+  <div class="form-group">
+    <label for="addressLine2">Address line 2</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="addressLine2"
+      id="addressLine2"
+    />
+  </div>
+  <div class="form-group">
+    <label for="addressLine3">Address line 3</label>
+    <input
+      type="text"
+      class="form-control"
+      class="form-control"
+      formControlName="addressLine3"
+      id="addressLine3"
+    />
+  </div>
+  <div class="form-group">
+    <label for="zipCode">Zip code</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="zipCode"
+      id="zipCode"
+    />
+    <!-- @if(pending && f['zipCode'].errors){
                 <div class="invalid-feedback">
                     @if(f['zipCode'].errors['required']) {
                         <div>Zip code required</div>
                     }
                 </div>
             } -->
-        </div>
-        <div class="form-group">
-            <label for="city">City</label>
-            <input type="text" class="form-control" formControlName="city" id="city">
-            <!-- @if(pending && f['city'].errors){
+  </div>
+  <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" class="form-control" formControlName="city" id="city" />
+    <!-- @if(pending && f['city'].errors){
                 <div class="invalid-feedback">
                     @if(f['city'].errors['required']) {
                         <div>City required</div>
                     }
                 </div>
             } -->
-        </div>
-        <div class="form-group">
-            <label for="country">Country</label>
-            <input type="text" class="form-control" formControlName="country" id="country">
-            <!-- @if(pending && f['country'].errors){
+  </div>
+  <div class="form-group">
+    <label for="country">Country</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="country"
+      id="country"
+    />
+    <!-- @if(pending && f['country'].errors){
                 <div class="invalid-feedback">
                     @if(f['country'].errors['required']) {
                         <div>Country required</div>
                     }
                 </div>
             } -->
-        </div>
-        <div class="form-group">
-            <label for="phoneNumber">Phone number</label>
-            <input type="text" class="form-control" formControlName="phoneNumber" id="phoneNumber">
-            <!-- @if(pending && f['phoneNumber'].errors){
+  </div>
+  <div class="form-group">
+    <label for="phoneNumber">Phone number</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="phoneNumber"
+      id="phoneNumber"
+    />
+    <!-- @if(pending && f['phoneNumber'].errors){
                 <div class="invalid-feedback">
                     @if(f['phoneNumber'].errors['required']) {
                         <div>Phone number invalid</div>
                     }
                 </div>
             } -->
-        </div>
-        <button class="btn btn-primary" type="submit">Add</button>
-    </form>
+  </div>
+  <button class="btn btn-primary" type="submit">Add</button>
+</form>
 } @else {
-    <p>Restaurant updated</p>
-    <button class="btn btn-primary" (click)="onClose()">Close</button>
+<p>Restaurant updated</p>
+<button class="btn btn-primary" (click)="onClose()">Close</button>
 }

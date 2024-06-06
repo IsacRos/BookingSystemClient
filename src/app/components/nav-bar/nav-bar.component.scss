@@ -1,15 +1,16 @@
 @import '../../../styles/theme.scss';
 
 .logo {
-    width: 20rem;
-    height: 200px;
+    width: 200px;
+    height: 100px;
     color: $hex4;
     display: flex;
     flex-direction: row;
+    margin: 30px;
 }
 
 img {
-    height: 100%;
+    object-fit: cover;
 }
 
 .logotext {

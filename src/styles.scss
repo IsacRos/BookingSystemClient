@@ -8,18 +8,41 @@ $custom-typography: mat.define-typography-config(
   $font-family: 'Ubuntu Sans, sans-serif'
 );
 
-$my-primary: mat.define-palette(mat.$indigo-palette);
+$my-primary: mat.define-palette(mat.$deep-purple-palette);
 $my-accent: mat.define-palette(mat.$pink-palette);
 
+$my-background-colors: (
+    status-bar: $hex6,
+    app-bar: $hex6,
+    background: $hex6,
+    hover: $hex6,
+    card: $hex6,
+    dialog: $hex6,
+    raised-button: $hex6,
+    selected-button: $hex6,
+    selected-disabled-button: $hex6,
+    disabled-button: $hex6,
+    focused-button: $hex6,
+    disabled-button-toggle: $hex6,
+    unselected-chip: $hex6,
+    disabled-list-option: $hex6,
+    tooltip: $hex6,
+);
+
 $my-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $my-primary,
-      accent: $my-accent,
-    ),
-    typography: $custom-typography
+    (
+        color: (
+            primary: $my-primary,
+            accent: $my-primary,
+        ),
+        typography: $custom-typography,
     )
 );
+
+$color-map: map.get($my-theme, 'color');
+$modified-color-map: map.merge($color-map, ('background': $my-background-colors));
+$my-theme: map.merge($my-theme, ('color': $modified-color-map));
+
 
 @include mat.all-component-themes($my-theme);
 
@@ -27,12 +50,22 @@ $my-theme: mat.define-light-theme(
     --mdc-dialog-container-shape: 30px;
 }
 
+// .my-select {
+//     --mdc-select-fill-color: blue;
+//     --mdc-text-field-fill-color: blue;
+//     --mdc-select-ink-color: blue;
+// }
+
 .my-dialog {
     border-radius: $radius-m;
 }
 .my-backdrop {
     // background-color: rgba($hex5, 0.1);
     backdrop-filter: blur(1px);
+}
+
+.my-select {
+    background-color: red;
 }
 
 .popup-container{
@@ -84,33 +117,12 @@ a {
     }
 }
 
-// .popup {
-//     display: flex;
-//     // background-color: grey;
-//     // width: 400px;
-//     // height: 500px;
-//     z-index: 3;
-//     position: absolute;
-// }
-.overlay {
-    top:0;
-    left: 0;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    backdrop-filter: blur(3px)
-
-}
-
-
-
 html, body { height: 100%; }
 
 body { 
     background-color: $hex5;
     color: $hex2;
-    text-shadow: 1px 1px 3px $hex4;
+    // text-shadow: 1px 1px 3px $hex4;
 }
 
 form {
@@ -166,7 +178,7 @@ form {
     .card-body {
         border-radius: 30px;
         text-align: end;
-        background-color: rgba($hex4, 0.1);
+        background-color: rgba($hex4, 0.2);
         height: 100%;
         margin-left: 30px;
     }
@@ -176,9 +188,8 @@ form {
     margin-top: 40px;
     width: 100vw;
     max-width: 1000px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
 }
+
 
 .btn, .btn-check {
     border: solid 2px $hex1;
@@ -212,4 +223,9 @@ form {
 
 .text-container {
     margin-top: 40px;
+}
+.item-body-bg {
+    background-color: rgba($hex4, 0.2);
+    padding: 25px;
+    border-radius: 30px;
 }

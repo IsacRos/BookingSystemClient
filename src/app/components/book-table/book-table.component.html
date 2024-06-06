@@ -1,60 +1,84 @@
 <div class="popup-container">
-    @if(!pending || form.invalid || !submitted && !errorMessage) {
-        <h1>Enter your information</h1>
-        <form [formGroup]="form" (ngSubmit)="bookTable()">
-            <div class="form-group">
-                <label for="customerFirstName">First Name</label>
-                <input type="text" class="form-control" formControlName="customerFirstName" id="customerFirstName" [ngClass]="{ 'is-invalid': pending && f['customerFirstName'].errors}">
-                @if(pending && f['customerFirstName'].errors){
-                    <div class="invalid-feedback">
-                        @if(f['customerFirstName'].errors['required']) {
-                            <div>First name required</div>
-                        }
-                    </div>
-                }
-            </div>
-            <div class="form-group">
-                <label for="customerLastName">Last Name</label>
-                <input type="text" class="form-control" formControlName="customerLastName" id="customerLastName" [ngClass]="{ 'is-invalid': pending && f['customerLastName'].errors}">
-                @if(pending && f['customerLastName'].errors){
-                    <div class="invalid-feedback">
-                        @if(f['customerLastName'].errors['required']) {
-                            <div>Last name required</div>
-                        }
-                    </div>
-                }
-            </div>
-            <div class="form-group">
-                <label for="customerPhone">Phone number</label>
-                <input type="text" class="form-control" formControlName="customerPhone" id="customerPhone" [ngClass]="{ 'is-invalid': pending && f['customerPhone'].errors}">
-                @if(pending && f['customerPhone'].errors){
-                    <div class="invalid-feedback">
-                        @if(f['customerPhone'].errors['required']) {
-                            <div>Phone number required</div>
-                        }
-                    </div>
-                }
-            </div>
-            <div class="form-group">
-                <label for="customerEmail">Email</label>
-                <input type="email" class="form-control" formControlName="customerEmail" id="customerEmail" [ngClass]="{ 'is-invalid': pending && f['customerEmail'].errors}">
-                @if(pending && f['customerEmail'].errors){
-                    <div class="invalid-feedback">
-                        @if(f['customerEmail'].errors['required']) {
-                            <div>Email required</div>
-                        }
-                    </div>
-                }
-            </div>
-            <button class="btn btn-primary" type="submit">Book table!</button>
-        </form>
-    } @else if(pending && !form.invalid && submitted) {
-        Booking request sent. When the restaurant has handled your request we'll let you know.
-        <button class="btn btn-primary" (click)="onClose()">Close</button>
-    } @else if(errorMessage) {
-        <h2>{{errorMessage}}</h2>
-        <button class="btn btn-primary" (click)="onClose()">Close</button>
-    } @else {
-        <div>Something went wrong.</div>
-    }
+  @if(!pending || form.invalid || !submitted && !errorMessage) {
+  <h1>Enter your information</h1>
+  <form [formGroup]="form" (ngSubmit)="bookTable()">
+    <div class="form-group">
+      <label for="customerFirstName">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="customerFirstName"
+        id="customerFirstName"
+        [ngClass]="{ 'is-invalid': pending && f['customerFirstName'].errors }"
+      />
+      @if(pending && f['customerFirstName'].errors){
+      <div class="invalid-feedback">
+        @if(f['customerFirstName'].errors['required']) {
+        <div>First name required</div>
+        }
+      </div>
+      }
+    </div>
+    <div class="form-group">
+      <label for="customerLastName">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="customerLastName"
+        id="customerLastName"
+        [ngClass]="{ 'is-invalid': pending && f['customerLastName'].errors }"
+      />
+      @if(pending && f['customerLastName'].errors){
+      <div class="invalid-feedback">
+        @if(f['customerLastName'].errors['required']) {
+        <div>Last name required</div>
+        }
+      </div>
+      }
+    </div>
+    <div class="form-group">
+      <label for="customerPhone">Phone number</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="customerPhone"
+        id="customerPhone"
+        [ngClass]="{ 'is-invalid': pending && f['customerPhone'].errors }"
+      />
+      @if(pending && f['customerPhone'].errors){
+      <div class="invalid-feedback">
+        @if(f['customerPhone'].errors['required']) {
+        <div>Phone number required</div>
+        }
+      </div>
+      }
+    </div>
+    <div class="form-group">
+      <label for="customerEmail">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        formControlName="customerEmail"
+        id="customerEmail"
+        [ngClass]="{ 'is-invalid': pending && f['customerEmail'].errors }"
+      />
+      @if(pending && f['customerEmail'].errors){
+      <div class="invalid-feedback">
+        @if(f['customerEmail'].errors['required']) {
+        <div>Email required</div>
+        }
+      </div>
+      }
+    </div>
+    <button class="btn btn-primary" type="submit">Book table!</button>
+  </form>
+  } @else if(pending && !form.invalid && submitted) { Booking request sent. When
+  the restaurant has handled your request we'll let you know.
+  <button class="btn btn-primary" (click)="onClose()">Close</button>
+  } @else if(errorMessage) {
+  <h2>{{ errorMessage }}</h2>
+  <button class="btn btn-primary" (click)="onClose()">Close</button>
+  } @else {
+  <div>Something went wrong.</div>
+  }
 </div>

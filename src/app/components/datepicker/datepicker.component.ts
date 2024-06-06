@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -34,7 +34,6 @@ export class DatepickerComponent {
   @Input() tables?: Table[];
 
   @Output() dateChange = new EventEmitter<Date>();
-
 
   // addEvent(val: Date) {
   //   this.dateChange.emit(val);
